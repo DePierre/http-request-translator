@@ -26,7 +26,7 @@ class TestScripts(unittest.TestCase):
         self.php_script = script.PHPScript(headers=self.headers, details=self.details)
         self.script_list = [self.ruby_script, self.python_script, self.bash_script, self.php_script]
 
-    def test_generate_search(self):
+    def test_script_generate_search(self):
         for script_name in self.script_list:
             result = script_name._generate_search(self.code_search)
             if isinstance(script_name, script.RubyScript):
@@ -42,7 +42,7 @@ class TestScripts(unittest.TestCase):
                 code_search,
                 'Invalid generation of search code for {}'.format(script_name.__class__.__name__))
 
-    def test_generate_proxy(self):
+    def test_script_generate_proxy(self):
         for script_name in self.script_list:
             result = script_name._generate_proxy()
             if isinstance(script_name, script.RubyScript):
@@ -58,7 +58,7 @@ class TestScripts(unittest.TestCase):
                 code_proxy,
                 'Invalid generation of proxy code for {}'.format(script_name.__class__.__name__))
 
-    def test_generate_script(self):
+    def test_script_generate_script(self):
         for script_name in self.script_list:
             result = script_name.generate_script()
             if isinstance(script_name, script.RubyScript):
@@ -74,7 +74,7 @@ class TestScripts(unittest.TestCase):
                 code,
                 'Invalid generation of script for {}'.format(script_name.__class__.__name__))
 
-    def test_generate_post(self):
+    def test_script_generate_post(self):
         self.details['data'] = 'hello7World\'Ω≈ç√∫˜µ≤≥÷田中さんにあげて下さい,./;[]\-=<>?:"{}|_+!@#$%^&*()`'
         for script_name in self.script_list:
             result = script_name._generate_post()
